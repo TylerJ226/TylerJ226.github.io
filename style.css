@@ -1,62 +1,124 @@
 @charset "utf-8";
 
-*{
-    margin: 0;
-    padding: 0;
-
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.mainBack{
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(to top, rgba(0,0,0,0.5)50%, rgba(0,0,0,0.5)50%), url(images/mainBackground.jpg);
-    background-size: cover;
-    background-position: center;
+.mainBack {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url(images/mainBack4.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
 
-.navBar{
-    width: 90%;
-    margin: 0;
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+.header {
+  height: 500;
+  background: rgba(185, 168, 143, 0.614);
 }
 
-.logo{
-    width: 300px;
-    height: 200px;
-   
-    background-size: auto;
+.navBar {
+  width: 100%;
+  margin: 0;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.logo {
+  width: 145px;
+  height: 70px;
+  background-size: auto;
+}
+
+.nav-links {
+  margin: 100;
+  flex: 1;
+  text-align: right;
 }
 
 .navBar ul li {
-    list-style: none;
-    display: inline-block;
-    margin: 0 50px;
-    position: relative;
+  list-style: none;
+  display: inline-block;
+  margin: 0 180px;
+  position: relative;
 }
 
 .navBar ul li a {
-    
-    text-decoration: none;
-    color: white;
-    text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
 }
 
 .navBar ul li::after {
-    content: '';
-    height: 3px;
-    width: 0;
-    background: red;
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    transition: 0.5s;
+  content: "";
+  height: 3px;
+  width: 0;
+  background: rgb(255, 212, 170);
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  transition: 0.5s;
 }
 
 .navBar ul li:hover::after {
-    width: 100%;
+  width: 100%;
+}
+
+.textBox {
+  width: 90%;
+  color: rgb(255, 255, 255, 0.85);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.textBox h1 {
+  font-size: 62px;
+}
+
+.mainBack p {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 45px;
+  color: bisque;
+}
+
+mainBack .fa {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .textBox h1 {
+    font-size: 20px;
+  }
+
+  .navBar ul li {
+    display: block;
+  }
+  .nav-links {
+    position: absolute;
+    background: burlywood;
+    height: 100vh;
+    width: 200px;
+    top: 0;
+    right: 0;
+    text-align: left;
+    z-index: 2;
+  }
+
+  mainBack .fa {
+    display: block;
+    color: #fff;
+    margin: 10px;
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  .nav-links ul {
+  }
 }
