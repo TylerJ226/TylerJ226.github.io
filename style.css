@@ -15,7 +15,6 @@
 }
 
 .header {
-  height: 500;
   background: rgba(185, 168, 143, 0.614);
 }
 
@@ -40,20 +39,20 @@
   text-align: right;
 }
 
-.navBar ul li {
+.nav-links ul li {
   list-style: none;
   display: inline-block;
   margin: 0 180px;
   position: relative;
 }
 
-.navBar ul li a {
+.nav-links ul li a {
   text-decoration: none;
   color: white;
   text-transform: uppercase;
 }
 
-.navBar ul li::after {
+.nav-links ul li::after {
   content: "";
   height: 3px;
   width: 0;
@@ -64,7 +63,7 @@
   transition: 0.5s;
 }
 
-.navBar ul li:hover::after {
+.nav-links ul li:hover::after {
   width: 100%;
 }
 
@@ -88,7 +87,7 @@
   color: bisque;
 }
 
-mainBack .fa {
+.mainBack .fa {
   display: none;
 }
 
@@ -97,28 +96,35 @@ mainBack .fa {
     font-size: 20px;
   }
 
-  .navBar ul li {
+  .nav-links ul li {
     display: block;
+    margin: 50px 50px;
+    
   }
+ 
   .nav-links {
     position: absolute;
-    background: burlywood;
+    background: rgb(255, 212, 170);
     height: 100vh;
     width: 200px;
     top: 0;
-    right: 0;
+    right: -200px;
     text-align: left;
     z-index: 2;
+    
   }
 
-  mainBack .fa {
+  .mainBack .fa {
     display: block;
-    color: #fff;
+    color: white;
     margin: 10px;
     font-size: 22px;
     cursor: pointer;
+    
   }
 
   .nav-links ul {
+    padding: 15px;
+    
   }
 }
