@@ -194,6 +194,11 @@ body {
     margin: 50px 50px;
     
   }
+
+  .nav-links ul li a{
+    color: rgb(56, 34, 12);
+    
+  }
  
   .nav-links {
     position: absolute;
