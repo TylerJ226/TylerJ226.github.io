@@ -148,6 +148,7 @@ body {
 .about_col {
   flex-basis: 30%;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url(images/mainBack3.jpg);
+  background-size: cover;
   height: 60vh;
   border-radius: 10px;
   margin-bottom: 5%;
@@ -158,6 +159,7 @@ body {
 .about_col2 {
   flex-basis: 30%;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url(images/teaBack.jpg);
+  background-size: cover;
   height: 60vh;
   border-radius: 10px;
   margin-bottom: 5%;
@@ -168,6 +170,7 @@ body {
 .about_col3 {
   flex-basis: 30%;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url(images/mainBack4.jpg);
+  background-size: cover;
   height: 60vh;
   border-radius: 10px;
   margin-bottom: 5%;
