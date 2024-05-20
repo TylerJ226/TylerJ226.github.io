@@ -15,14 +15,18 @@ body {
 .mainBack {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 50%), url(images/realBackground.png);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 50%), url(images/real.png);
   background-size:cover;
   background-position: center;
   position: relative;
 }
 
 .header {
-  background: rgba(185, 168, 143, 0.0);
+  background: url(images/brow.jpg);
+  position: fixed;
+  width: 100%;
+  height: 6rem;
+  display: flex;
 }
 
 .navBar {
@@ -35,9 +39,9 @@ body {
 }
 
 .logo {
-  width: 0px;
-  height: 0px;
-  background-size: auto;
+  width: 5rem;
+  height: 5rem;
+  padding: 2rem ;
 }
 
 .nav-links {
@@ -49,7 +53,7 @@ body {
 .nav-links ul li {
   list-style: none;
   display: inline-block;
-  margin: 0 200px;
+  margin: 0 70px;
   position:relative;
 }
 
@@ -110,14 +114,99 @@ body {
   display: none;
 }
 
+.About{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url(images/stand.jpg);
+  background-size:cover;
+  background-position: center;
+}
+
+.About .content{
+  max-width: 45rem;
+  padding: 2rem;
+  
+}
+
+.About .content h3{
+  font-size: 4rem;
+  color: white;
+  
+}
+
+.About .content p{
+  font-size: 1.5rem;
+  color: white;
+  
+}
+
+.About .rand {
+  height: 30rem;
+  padding-left: 5rem;
+}
+
+
+.Selection{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to top, rgba(0, 0, 0) 50%, rgba(0, 0, 0) 50%);
+  background-size:cover;
+  background-position: center;
+}
+
+
+
 
 /* about section */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .about_mainBack {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(to bottom right, rgb(185, 168, 143), white);
-  background-size: cover;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1) 50%), url(images/halfmenu.jpg);
+  background-size:cover;
   background-position: center;
   position: relative;
 }
@@ -138,7 +227,7 @@ body {
 
 .about h1 {
   font-size: 50px;
-  color: rgb(56, 34, 12);
+  color: white;
 
 }
 
@@ -152,7 +241,7 @@ body {
 } 
 
 .row {
-  margin: 5%;
+  margin-top: 5%;
   display: flex;
   justify-content: space-between;
 }
@@ -163,7 +252,7 @@ body {
   background-size: cover;
   height: 60vh;
   border-radius: 10px;
-  margin-bottom: 5%;
+  margin-bottom: 0%;
   padding: 20px 12px;
   box-sizing: border-box;
 }
@@ -174,7 +263,7 @@ body {
   background-size: cover;
   height: 60vh;
   border-radius: 10px;
-  margin-bottom: 5%;
+  margin-bottom: 0%;
   padding: 20px 12px;
   box-sizing: border-box;
 }
@@ -185,9 +274,24 @@ body {
   background-size: cover;
   height: 60vh;
   border-radius: 10px;
-  margin-bottom: 5%;
+  margin-bottom: 0%;
   padding: 20px 12px;
   box-sizing: border-box;
+}
+
+/* selection section */
+
+.selection_mainBack {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.5) 50%), url(images/cups.jpg);
+  background-size:cover;
+  background-position: center;
+  position: relative;
+}
+
+.selection_mainBack .fa {
+  display: none;
 }
 
 /* phones section */
@@ -248,6 +352,15 @@ body {
     
   }
 
+  .selection_mainBack .fa {
+    display: block;
+    color: white;
+    margin: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    
+  }
+
   .row {
     flex-direction: column;
     display: block;
@@ -275,26 +388,6 @@ body {
   
 }
 
-/* section 2 */
 
- .under {
-  width: 80%;
-  margin: auto;
-  text-align: center;
-  padding-top: 100px;
 
-}
 
-.under h1{
-  font-size: 40px;
-  font-weight: 600;
-
-}
-
-.under p{
-  color: black;
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 22px;
-  padding: 10px;
-}
