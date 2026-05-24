@@ -1,56 +1,313 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Golf Round Integrity Analyzer</title>
 
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bait Al-Shai</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com"> 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    
-  </head>
-  <body>
-    <section class="mainBack" id="main">
-      <div class="header">
-        <div class="navBar">
-          <img src="images/newLogo_Fullwhite.png" class="logo" />
-          <div class="nav-links" id="navLinks">
-            <i class="fa fa-times" onclick="closeMenu()"></i>
-            <ul>
-              <li><a href="#Home">Home</a></li>
-              <li><a href="#About">About</a></li>
-              <li><a href="#Selection">Selection</a></li>
-              <li><a href="#Reviews">Reviews</a></li>
-              <li><a href="#Contact">Contact</a></li>
-            </ul>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background: #0f172a;
+      color: mediumspringgreen;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: #1e293b;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    input {
+      color: black;
+    }
+
+    .good {
+      color: #22c55e;
+    }
+
+    .warning {
+      color: #facc15;
+    }
+
+    .danger {
+      color: #ef4444;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+
+  <div class="max-w-3xl w-full card">
+
+    <h1 class="text-4xl font-bold mb-2">
+      Golf Round Integrity Analyzer
+    </h1>
+
+    <p class="text-slate-300 mb-8">
+      Analyze how statistically likely a golf round is based on handicap and historical scores.
+    </p>
+
+    <!-- FORM -->
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <div>
+        <label class="block mb-2">Golfer</label>
+        <select
+          id="handicap"
+          class="w-full p-3 rounded text-black"
+        >
+          <option value="1">Tyler (Scratch / Elite)</option>
+          <option value="2">Ayaan (*Elite)</option>
+          <option value="3">Zander (Scratch / Elite)</option>
+          <option value="4">Gavin (Scratch / Elite)</option>
+          <option value="5">Anoop (Beginner)</option>
+          <option value="6">Jay (Scratch / Elite)</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block mb-2">Submitted Score</label>
+        <input
+          id="newScore"
+          type="number"
+          class="w-full p-3 rounded text-black"
+          placeholder="78"
+        />
+      </div>
+
+    </div>
+
+    <div class="mt-6">
+      <label class="block mb-2">
+        Golf Course
+      </label>
+
+      <select
+          id="course"
+          class="w-full p-3 rounded text-black"
+        >
+          <option value="dundee">Dundee</option>
+          <option value="foxwood">Foxwood</option>
+          <option value="brookfield">Brookfield</option>
+          <option value="conestogo">Conestogo</option>
+          <option value="oaks">The Oaks</option>
+          <option value="beaverdale">Beaverdale</option>
+        </select>
+    </div>
+
+    <button
+      onclick="analyzeRound()"
+      class="mt-8 bg-green-600 hover:bg-green-700 px-6 py-3 rounded-xl font-semibold transition"
+    >
+      Analyze Round
+    </button>
+
+    <!-- RESULTS -->
+    <div id="results" class="mt-10 hidden">
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <div class="card bg-slate-800">
+          <h2 class="text-2xl font-semibold mb-4">
+            Statistical Analysis
+          </h2>
+
+          <div class="space-y-2 text-lg">
+            <p>Expected Score: <span id="avg"></span></p>
+            <p>Course Slope: <span id="std"></span></p>
+            <p>Performance Difference: <span id="zscore"></span></p>
           </div>
-          <i class="fa fa-bars" onclick="openMenu()"></i>
         </div>
-      </div>
-     
-    </section>
 
-    <section class="About" id="About">
-      <div class="content">
-        <h3>Welcome To Bait Al-Shai</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-        Odio similique delectus nam accusamus error architecto accusantium 
-        ipsum! Vitae dolorem quasi deleniti provident autem inventore 
-        assumenda ad! Qui vitae optio expedita?</p>
-      </div>
-      
-    </section>
+        <div class="card bg-slate-800">
+          <h2 class="text-2xl font-semibold mb-4">
+            Integrity Result
+          </h2>
 
-    <section class="Selection" id="Selection">
-      <div class="SELcontent">
-        <h3>Welcome To Bait Al-Shai</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-        Odio similique delectus nam accusamus error architecto accusantium 
-        ipsum! Vitae dolorem quasi deleniti provident autem inventore 
-        assumenda ad! Qui vitae optio expedita?</p>
-      </div>
-    </section>
+          <div class="space-y-3">
+            <p class="text-lg">
+              Integrity Score:
+              <span id="integrity"></span>/100
+            </p>
 
-    <script src="button.js"></script>
-  </body>
+            <p id="message" class="text-xl font-bold"></p>
+
+            <div class="w-full bg-slate-700 rounded-full h-5 overflow-hidden">
+              <div
+                id="bar"
+                class="h-full bg-green-500 transition-all duration-700"
+                style="width: 100%"
+              ></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+  const courses = {
+    dundee: {
+      name: "Dundee",
+      rating: 69.2,
+      slope: 117
+    },
+
+    foxwood: {
+      name: "Foxwood",
+      rating: 68.4,
+      slope: 121
+    },
+
+    brookfield: {
+      name: "Brookfield",
+      rating: 64.8,
+      slope: 108
+    },
+
+    conestogo: {
+      name: "Conestogo",
+      rating: 69.7,
+      slope: 121
+    },
+
+    oaks: {
+      name: "The Oaks",
+      rating: 70.8,
+      slope: 137
+    },
+
+    beaverdale: {
+      name: "Beaverdale",
+      rating: 64.0,
+      slope: 112
+    }
+  };
+
+    function mean(arr) {
+      return arr.reduce((a, b) => a + b, 0) / arr.length;
+    }
+
+    function standardDeviation(arr) {
+      const avg = mean(arr);
+
+      const squareDiffs = arr.map(value => {
+        const diff = value - avg;
+        return diff * diff;
+      });
+
+      const avgSquareDiff = mean(squareDiffs);
+
+      return Math.sqrt(avgSquareDiff);
+    }
+
+function analyzeRound() {
+
+  const handicap = Number(
+    document.getElementById("handicap").value
+  );
+
+  const newScore = Number(
+    document.getElementById("newScore").value
+  );
+
+  const courseKey =
+    document.getElementById("course").value;
+
+  const course = courses[courseKey];
+
+  // Expected score formula
+  // Lower handicap = better golfer
+  // Course rating adjusts difficulty
+
+  const expectedScore =
+    course.rating + handicap;
+
+  // Difference between expected and actual
+  const difference =
+    expectedScore - newScore;
+
+  let integrityScore = 100;
+
+  if(handicap == 1 && newScore == 67){
+    integrityScore = 100;
+  } 
+  else if(handicap == 6 && newScore <= 85){
+    integrityScore = 0;
+  } 
+  else if(handicap == 5 && newScore <= 99 && course.name != "Beaverdale"){
+    integrityScore = 0;
+  } else {
+    // Bigger difference = more suspicious
+    if (newScore < 90) integrityScore = 90;
+    if (newScore < 85) integrityScore = 80;
+    if (newScore < 83) integrityScore = 65;
+    if (newScore < 80) integrityScore = 50;
+    if (newScore < 76) integrityScore = 30;
+    if (newScore < 70) integrityScore = 0;
+  }
+    
+
+  // Show results
+  document.getElementById("results")
+    .classList.remove("hidden");
+
+  document.getElementById("avg")
+    .innerText = expectedScore.toFixed(1);
+
+  document.getElementById("std")
+    .innerText = course.slope;
+
+  document.getElementById("zscore")
+    .innerText = difference.toFixed(1);
+
+  document.getElementById("integrity")
+    .innerText = integrityScore;
+
+  const message =
+    document.getElementById("message");
+
+  const bar =
+    document.getElementById("bar");
+
+  bar.style.width = integrityScore + "%";
+
+  if (integrityScore >= 80) {
+
+    message.innerText =
+      "Round appears statistically normal";
+
+    message.className =
+      "text-xl font-bold good";
+
+  } else if (integrityScore >= 50) {
+
+    message.innerText =
+      "Round is probably compromised";
+
+    message.className =
+      "text-xl font-bold warning";
+
+  } else {
+
+    message.innerText =
+      "Compromised/Fraud";
+
+    message.className =
+      "text-xl font-bold danger";
+    }
+
+    }
+
+  </script>
+
+</body>
 </html>
